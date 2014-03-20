@@ -1,8 +1,9 @@
 function Character ()
 {
 	var _self = this,
-		x = 0,
-		y = 0;
+		_x = 0,
+		_y = 0,
+		_movementDistance = 4;
 
 	_self.el;
 
@@ -11,37 +12,39 @@ function Character ()
 		_self.el = characterEl;
 	};
 
-	_self.move = function (movementObject)
+	_self.moveLeft = function ()
 	{
-		if (movementObject.axis === "x")
-		{
-			if (movementObject.direction === 1)
-			{
-				_self.el.style.left = x + movementObject.distance + "px";
-				x += movementObject.distance;
-			}
-			else
-			{
-				_self.el.style.left = x - movementObject.distance + "px";
-				x -= movementObject.distance;
-			}
+		_self.el.style.left = _x - _movementDistance + "px";
+		
+		_x -= _movementDistance;
 
-			console.log ("x:", x);
-		}
-		else
-		{
-			if (movementObject.direction === 1)
-			{
-				_self.el.style.top = y + movementObject.distance + "px";
-				y += movementObject.distance;
-			}
-			else
-			{
-				_self.el.style.top = y - movementObject.distance + "px";
-				y -= movementObject.distance;
-			}
+		console.log ('character moving left');
+	};
 
-			console.log ("y:", y);
-		}
+	_self.moveUp = function ()
+	{
+		_self.el.style.top = _y - _movementDistance + "px";
+		
+		_y -= _movementDistance;
+
+		console.log ('character moving up');
+	};
+
+	_self.moveRight = function ()
+	{
+		_self.el.style.left = _x + _movementDistance + "px";
+
+		_x += _movementDistance;
+
+		console.log ('character moving right');
+	};
+
+	_self.moveDown = function ()
+	{
+		_self.el.style.top = _y + _movementDistance + "px";
+		
+		_y += _movementDistance;
+
+		console.log ('character moving down');
 	};
 }
