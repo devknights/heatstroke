@@ -11,12 +11,13 @@ _keyboard.init ();
 
 // create a new instance of the 'Level' class so that our
 // game has some boudaries.
-// var _level = new Level ();
+var _level = new Level ();
+_level.init (document.getElementById("main-container"));
 
 
 // set an interval for constantly calling the 'tick' function.
 // here, we are calling it every 4 milliseconds.
-var ticker = setInterval(tick, 4);
+var _ticker = setInterval(tick, 4);
 
 
 function tick ()
@@ -52,4 +53,39 @@ function tick ()
 		// run the character's 'moveDown' function.
 		_character.moveDown ();
 	}
+
+	var characterPosition = _character.getPosition (),
+		characterDimensions = _character.getDimensions (),
+		levelDimensions = _level.getDimensions ();
+	
+	if (characterPosition.x + characterDimensions.width >= levelDimensions.width)
+	{
+		console.log ("out of bounds - right");
+
+		stopGame ();
+	}
+	else if (characterPosition.x <= 0)
+	{
+		console.log ("out of bounds - left");
+
+		stopGame ();
+	}
+
+	if (characterPosition.y + characterDimensions.height >= levelDimensions.height)
+	{
+		console.log ("out of bounds - bottom");
+
+		stopGame ();
+	}
+	else if (characterPosition.y <= 0)
+	{
+		console.log ("out of bounds - top");
+
+		stopGame ();
+	}
+}
+
+function stopGame ()
+{
+	clearInterval(_ticker);
 }
