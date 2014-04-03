@@ -1,5 +1,13 @@
 
-// create a new instance of the 'Character' class an
+// the size of a boundary that we minus from our
+// collision calculations below.
+var BOUNDARY_OFFSET = 40;
+
+// the delay (in milliseconds) between repeated calls of
+// the 'tick' function.
+var TICK_DELAY = 20;
+
+// create a new instance of the 'Character' class and
 // pass in an HTML element for it to manipulate.
 var _character = new Character ();
 _character.init (document.getElementById("hero"));
@@ -12,12 +20,12 @@ _keyboard.init ();
 // create a new instance of the 'Level' class so that our
 // game has some boudaries.
 var _level = new Level ();
-_level.init (document.getElementById("main-container"));
+_level.init (document.getElementById("level-container"));
 
 
 // set an interval for constantly calling the 'tick' function.
 // here, we are calling it every 4 milliseconds.
-var _ticker = setInterval(tick, 4);
+var _ticker = setInterval(tick, TICK_DELAY);
 
 
 function tick ()
@@ -58,34 +66,38 @@ function tick ()
 		characterDimensions = _character.getDimensions (),
 		levelDimensions = _level.getDimensions ();
 	
-	if (characterPosition.x + characterDimensions.width >= levelDimensions.width)
+	if (characterPosition.x + characterDimensions.width >= levelDimensions.width - BOUNDARY_OFFSET)
 	{
 		console.log ("out of bounds - right");
 
-		stopGame ();
+		collision ();
 	}
-	else if (characterPosition.x <= 0)
+	else if (characterPosition.x <= BOUNDARY_OFFSET)
 	{
 		console.log ("out of bounds - left");
 
-		stopGame ();
+		collision ();
 	}
 
-	if (characterPosition.y + characterDimensions.height >= levelDimensions.height)
+	if (characterPosition.y + characterDimensions.height >= levelDimensions.height - BOUNDARY_OFFSET)
 	{
 		console.log ("out of bounds - bottom");
 
-		stopGame ();
+		collision ();
 	}
-	else if (characterPosition.y <= 0)
+	else if (characterPosition.y <= BOUNDARY_OFFSET)
 	{
 		console.log ("out of bounds - top");
 
-		stopGame ();
+		collision ();
 	}
 }
 
-function stopGame ()
+function collision ()
 {
+	// clear the interval to stop the tick function being called.
 	clearInterval(_ticker);
+
+	// set the 'collision' CSS class on the character to start flames animation.
+	_character.getElement().className = "collision";
 }
