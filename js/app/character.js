@@ -78,6 +78,7 @@ function Character ()
 		// console.log ('character moving down');
 	};
 
+	// a function for the retreival of the current left/top position.
 	_self.getPosition = function ()
 	{
 		return {x: _x, y: _y};
@@ -87,5 +88,11 @@ function Character ()
 	_self.getDimensions = function ()
 	{
 		return {width: _width, height: _height};
+	};
+
+	// a function for the retreival of character HTML element.
+	_self.getElement = function ()
+	{
+		return _el;
 	};
 }
