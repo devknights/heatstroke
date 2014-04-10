@@ -109,12 +109,17 @@ function KeyboardInteraction ()
 				updateKeyDownState(_self.keys.down, false);
 				break;
 		}
+
+		// console.log("[keyUpHandler] keycode: " + event.keyCode);
+		// console.log("total keys down: " + _self.totalKeysDown);
 	}
 
 	// this function sets the 'isKeyDown' property on whichever object is
 	// passed in as the first parameter, based on the second 'isKeyDown' parameter.
 	function updateKeyDownState (key, isKeyDown)
 	{
+		if (key.isKeyDown === isKeyDown) return;
+
 		key.isKeyDown = isKeyDown;
 
 		if(isKeyDown === true)
