@@ -1,7 +1,250 @@
+html, body, div
+{
+	margin: 0;
+	padding: 0;
+	color: #ff0000;
+}
+
+#main-container
+{
+	position: relative;
+	width: 480px;
+	height: 480px;
+	margin: 0 auto
+}
+
+#level-container
+{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-image: url('../img/floor.jpg');
+	background-repeat: repeat;
+}
+
+.boundary
+{
+	position: absolute;
+	background-image: url('../img/flames.png');
+	background-repeat: repeat;
+    -webkit-animation: flames 1.2s steps(5) infinite;
+    -moz-animation: flames 1.2s steps(5) infinite;
+    -ms-animation: flames 1.2s steps(5) infinite;
+    animation: flames 1.2s steps(5) infinite;
+}
+
+.boundary.horizontal
+{
+	width: 100%;
+	height: 40px;
+}
+
+.boundary.vertical
+{
+	width: 40px;
+	height: 100%;
+}
+
+.boundary.top
+{
+	top: 0;
+}
+
+.boundary.right
+{
+	right: 0;
+}
+
+.boundary.bottom
+{
+	bottom: 0;
+}
+
+.boundary.left
+{
+	left: 0;
+}
+
 #hero
 {
 	position: absolute;
-	width: 100px;
-	height: 100px;
-	background-color: blue;
+	width: 50px;
+	height: 50px;
+	left: 215px;
+	top: 215px;
+	background: url('../img/character.png');
+	background-size: 200px;
+
+	background-position: 0px 0px;
+}
+
+#hero.down
+{
+	-webkit-animation: walkDown 0.6s steps(4) infinite;
+	-moz-animation: walkDown 0.6s steps(4) infinite;
+	-ms-animation: walkDown 0.6s steps(4) infinite;
+	animation: walkDown 0.6s steps(4) infinite;
+}
+
+#hero.up
+{
+	-webkit-animation: walkUp 0.6s steps(4) infinite;
+	-moz-animation: walkUp 0.6s steps(4) infinite;
+	-ms-animation: walkUp 0.6s steps(4) infinite;
+	animation: walkUp 0.6s steps(4) infinite;
+}
+
+#hero.left
+{
+	-webkit-animation: walkLeft 0.6s steps(4) infinite;
+	-moz-animation: walkLeft 0.6s steps(4) infinite;
+	-ms-animation: walkLeft 0.6s steps(4) infinite;
+	animation: walkLeft 0.6s steps(4) infinite;
+}
+
+#hero.right
+{
+	-webkit-animation: walkRight 0.6s steps(4) infinite;
+	-moz-animation: walkRight 0.6s steps(4) infinite;
+	-ms-animation: walkRight 0.6s steps(4) infinite;
+	animation: walkRight 0.6s steps(4) infinite;
+}
+
+
+/* -------------------------------------------------- */
+/* FLAMES ANIMATION */
+/* -------------------------------------------------- */
+@-webkit-keyframes flames
+{
+	0% {background-position: 0px 0px;}
+	100% {background-position: -400px 0px;}
+}
+
+@-moz-keyframes flames
+{
+	0% {background-position: 0px 0px;}
+	100% {background-position: -400px 0px;}
+}
+
+@-ms-keyframes flames
+{
+	0% {background-position: 0px 0px;}
+	100% {background-position: -400px 0px;}
+}
+
+@keyframes flames
+{
+	0% {background-position: 0px 0px;}
+	100% {background-position: -400px 0px;}
+}
+
+/* -------------------------------------------------- */
+
+
+/* -------------------------------------------------- */
+/* CHARACTER ANIMATION - UP */
+/* -------------------------------------------------- */
+@-webkit-keyframes walkUp
+{
+	0% {background-position: 0px -150px;}
+	100% {background-position: -200px -150px;}
+}
+
+@-moz-keyframes walkUp
+{
+	0% {background-position: 0px -150px;}
+	100% {background-position: -200px -150px;}
+}
+
+@-ms-keyframes walkUp
+{
+	0% {background-position: 0px -150px;}
+	100% {background-position: -200px -150px;}
+}
+
+@keyframes walkUp
+{
+	0% {background-position: 0px -150px;}
+	100% {background-position: -200px -150px;}
+}
+
+/* -------------------------------------------------- */
+/* CHARACTER ANIMATION - DOWN */
+/* -------------------------------------------------- */
+@-webkit-keyframes walkDown
+{
+	0% {background-position: 0px 0px;}
+	100% {background-position: -200px 0px;}
+}
+
+@-moz-keyframes walkDown
+{
+	0% {background-position: 0px 0px;}
+	100% {background-position: -200px 0px;}
+}
+
+@-ms-keyframes walkDown
+{
+	0% {background-position: 0px 0px;}
+	100% {background-position: -200px 0px;}
+}
+
+@keyframes walkDown
+{
+	0% {background-position: 0px 0px;}
+	100% {background-position: -200px 0px;}
+}
+
+/* -------------------------------------------------- */
+/* CHARACTER ANIMATION - LEFT */
+/* -------------------------------------------------- */
+@-webkit-keyframes walkLeft
+{
+	0% {background-position: 0px -50px;}
+	100% {background-position: -200px -50px;}
+}
+
+@-moz-keyframes walkLeft
+{
+	0% {background-position: 0px -50px;}
+	100% {background-position: -200px -50px;}
+}
+
+@-ms-keyframes walkLeft
+{
+	0% {background-position: 0px -50px;}
+	100% {background-position: -200px -50px;}
+}
+
+@keyframes walkLeft
+{
+	0% {background-position: 0px -50px;}
+	100% {background-position: -200px -50px;}
+}
+
+/* -------------------------------------------------- */
+/* CHARACTER ANIMATION - RIGHT */
+/* -------------------------------------------------- */
+@-webkit-keyframes walkRight
+{
+	0% {background-position: 0px -100px;}
+	100% {background-position: -200px -100px;}
+}
+
+@-moz-keyframes walkRight
+{
+	0% {background-position: 0px -100px;}
+	100% {background-position: -200px -100px;}
+}
+
+@-ms-keyframes walkRight
+{
+	0% {background-position: 0px -100px;}
+	100% {background-position: -200px -100px;}
+}
+
+@keyframes walkRight
+{
+	0% {background-position: 0px -100px;}
+	100% {background-position: -200px -100px;}
 }
