@@ -8,6 +8,14 @@ function Character ()
 		_movementDistance = 4,
 		_el;
 
+	function setCharacterClassName (className)
+	{
+		if (_el.className !== className)
+		{
+			_el.className = className;
+		}
+	}
+
 	// the 'init' function expects an HTML element as a parameter
 	_self.init = function (characterEl)
 	{
@@ -24,6 +32,8 @@ function Character ()
 
 	_self.moveLeft = function ()
 	{
+		setCharacterClassName("left");
+
 		// we decrease the value of our '_x' variable by the value of our '_movementDistance' variable.
 		_x -= _movementDistance;
 
@@ -38,6 +48,8 @@ function Character ()
 
 	_self.moveUp = function ()
 	{
+		setCharacterClassName("up");
+
 		// we decrease the value of our '_y' variable by the value of our '_movementDistance' variable.
 		_y -= _movementDistance;
 
@@ -52,6 +64,8 @@ function Character ()
 
 	_self.moveRight = function ()
 	{
+		setCharacterClassName("right");
+
 		// we increase the value of our '_x' variable by the value of our '_movementDistance' variable.
 		_x += _movementDistance;
 
@@ -66,6 +80,8 @@ function Character ()
 
 	_self.moveDown = function ()
 	{
+		setCharacterClassName("down");
+
 		// we increase the value of our '_y' variable by the value of our '_movementDistance' variable.
 		_y += _movementDistance;
 
@@ -76,6 +92,11 @@ function Character ()
 		
 
 		// console.log ('character moving down');
+	};
+
+	_self.standStill = function ()
+	{
+		setCharacterClassName("");
 	};
 
 	// a function for the retreival of the current left/top position.
