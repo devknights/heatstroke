@@ -1,6 +1,7 @@
 function KeyboardInteraction ()
 {
-	var _self = this;
+	var _self = this,
+		_keysPressedArray = []; // an array for storing the order in which keys are pressed.
 
 	// create an object containing the keycodes of keys
 	// that we will be checking for later.
@@ -10,7 +11,6 @@ function KeyboardInteraction ()
 		right: {code: 39, isKeyDown: false},
 		down: {code: 40, isKeyDown: false},
 		lastKeyPressed: null,
-		keysPressedArray: []
 	};
 
 	// a public variable that details the number of keys that are
@@ -128,7 +128,7 @@ function KeyboardInteraction ()
 
 		if(isKeyDown === true)
 		{
-			_self.keys.keysPressedArray.push(key.code);
+			_keysPressedArray.push(key.code);
 			_self.keys.lastKeyPressed = key.code;
 			// the key state is pressed down, so increase the value of our variable for
 			// the total amount of keys that are down.
@@ -137,8 +137,8 @@ function KeyboardInteraction ()
 		else
 		{
 			// find index of released key and remove it from the array.
-			releasedKeyArrayIndex = _self.keys.keysPressedArray.indexOf(key.code);
-			_self.keys.keysPressedArray.splice(releasedKeyArrayIndex, 1);
+			releasedKeyArrayIndex = _keysPressedArray.indexOf(key.code);
+			_keysPressedArray.splice(releasedKeyArrayIndex, 1);
 
 			// the key state is released, so decrease the value of our variable for
 			// the total amount of keys that are down.
@@ -151,7 +151,7 @@ function KeyboardInteraction ()
 			else
 			{
 				// set the 'lastKeyPressed' property to equal the code of the calue in the last index of 'keysPressedArray'.
-				_self.keys.lastKeyPressed = _self.keys.keysPressedArray[_self.keys.keysPressedArray.length - 1];
+				_self.keys.lastKeyPressed = _keysPressedArray[_keysPressedArray.length - 1];
 			}
 		}
 	}
