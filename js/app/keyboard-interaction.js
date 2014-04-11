@@ -8,7 +8,9 @@ function KeyboardInteraction ()
 		left: {code: 37, isKeyDown: false},
 		up: {code: 38, isKeyDown: false},
 		right: {code: 39, isKeyDown: false},
-		down: {code: 40, isKeyDown: false}
+		down: {code: 40, isKeyDown: false},
+		lastKeyPressed: null,
+		keysPressedArray: []
 	};
 
 	// a public variable that details the number of keys that are
@@ -109,25 +111,48 @@ function KeyboardInteraction ()
 				updateKeyDownState(_self.keys.down, false);
 				break;
 		}
+
+		// console.log("[keyUpHandler] keycode: " + event.keyCode);
+		// console.log("total keys down: " + _self.totalKeysDown);
 	}
 
 	// this function sets the 'isKeyDown' property on whichever object is
 	// passed in as the first parameter, based on the second 'isKeyDown' parameter.
 	function updateKeyDownState (key, isKeyDown)
 	{
+		if (key.isKeyDown === isKeyDown) return;
+
+		var releasedKeyArrayIndex;
+
 		key.isKeyDown = isKeyDown;
 
 		if(isKeyDown === true)
 		{
+			_self.keys.keysPressedArray.push(key.code);
+			_self.keys.lastKeyPressed = key.code;
 			// the key state is pressed down, so increase the value of our variable for
 			// the total amount of keys that are down.
 			_self.totalKeysDown++;
 		}
 		else
 		{
+			// find index of released key and remove it from the array.
+			releasedKeyArrayIndex = _self.keys.keysPressedArray.indexOf(key.code);
+			_self.keys.keysPressedArray.splice(releasedKeyArrayIndex, 1);
+
 			// the key state is released, so decrease the value of our variable for
 			// the total amount of keys that are down.
 			_self.totalKeysDown--;
+
+			if (_self.totalKeysDown === 0)
+			{
+				_self.keys.lastKeyPressed = null;
+			}
+			else
+			{
+				// set the 'lastKeyPressed' property to equal the code of the calue in the last index of 'keysPressedArray'.
+				_self.keys.lastKeyPressed = _self.keys.keysPressedArray[_self.keys.keysPressedArray.length - 1];
+			}
 		}
 	}
 }

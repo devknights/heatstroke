@@ -32,36 +32,48 @@ function tick ()
 {
 	// if there are no keys pressed then return immedietly to
 	// stop processing the rest of the 'tick' function.
-	if (_keyboard.totalKeysDown === 0) return;
-
-	// if the 'left' key is pressed down...
-	if (_keyboard.keys.left.isKeyDown === true)
+	if (_keyboard.totalKeysDown === 0)
 	{
-		// run the character's 'moveLeft' function.
-		_character.moveLeft ();
+		_character.standStill();
 	}
+	else
+	{
+		updateCharacterMovement();
+		checkForCollisions();
+	}
+}
 
-	// if the 'up' key is pressed down...
-	if (_keyboard.keys.up.isKeyDown === true)
+function updateCharacterMovement ()
+{
+	// check what the last key pressed was so that we can
+	// move in that direction.
+	var lastKeyPressed = _keyboard.keys.lastKeyPressed;
+
+
+	if (lastKeyPressed === _keyboard.keys.up.code)
 	{
 		// run the character's 'moveUp' function.
 		_character.moveUp ();
 	}
-
-	// if the 'right' key is pressed down...
-	if (_keyboard.keys.right.isKeyDown === true)
-	{
-		// run the character's 'moveRight' function.
-		_character.moveRight ();
-	}
-
-	// if the 'down' key is pressed down...
-	if (_keyboard.keys.down.isKeyDown === true)
+	else if (lastKeyPressed === _keyboard.keys.down.code)
 	{
 		// run the character's 'moveDown' function.
 		_character.moveDown ();
 	}
+	else if (lastKeyPressed === _keyboard.keys.left.code)
+	{
+		// run the character's 'moveLeft' function.
+		_character.moveLeft ();
+	}
+	else if (lastKeyPressed === _keyboard.keys.right.code)
+	{
+		// run the character's 'moveRight' function.
+		_character.moveRight ();
+	}
+}
 
+function checkForCollisions ()
+{
 	var characterPosition = _character.getPosition (),
 		characterDimensions = _character.getDimensions (),
 		levelDimensions = _level.getDimensions ();
